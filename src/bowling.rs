@@ -1,19 +1,19 @@
 pub struct Bowling {
-    toto: i8
+    score: i16
 }
 
 impl Bowling {
     pub(crate) fn new() -> Bowling {
-        Bowling {
-            toto: 0
+        return Bowling {
+            score: 0
         }
     }
 
-    pub fn roll(&mut self, pins: i8) {
-        self.toto = pins;
+    pub fn roll(&mut self, pins_down: i16) {
+        self.score += pins_down;
     }
 
     pub fn score(&self) -> i16 {
-        return 0;
+        return self.score;
     }
 }
