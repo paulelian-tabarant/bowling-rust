@@ -1,4 +1,4 @@
-struct Bowling();
+pub struct Bowling();
 
 impl Bowling {
     pub fn roll(&self, pins: i8) {
@@ -10,7 +10,7 @@ impl Bowling {
 }
 
 #[test]
-fn test_bowling_score_is_zero_when_bowling_object_is_created() {
+fn score_is_zero_when_every_roll_is_a_gutter_ball() {
     let bowling = Bowling();
 
     for _ in 0..20 {
