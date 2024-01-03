@@ -17,7 +17,7 @@ mod bowling_test {
     }
 
     #[test]
-    fn score_is_twenty_when_every_roll_is_a_one() {
+    fn score_is_the_sum_of_every_roll_in_a_classic_game() {
         let mut bowling = Bowling::new();
         let one_pin = 1;
 
@@ -28,16 +28,18 @@ mod bowling_test {
         assert_eq!(bowling.score(), 20);
     }
 
-    // test the same with twos
     #[test]
-    fn score_is_forty_when_every_roll_is_a_two() {
+    fn score_includes_next_roll_after_a_spare() {
         let mut bowling = Bowling::new();
-        let two_pins = 2;
+        let next_roll = 3;
 
-        for _ in 0..20 {
-            bowling.roll(two_pins);
+        bowling.roll(2);
+        bowling.roll(8);
+        bowling.roll(next_roll);
+        for _ in 0..17 {
+            bowling.roll(0);
         }
 
-        assert_eq!(bowling.score(), 40);
+        assert_eq!(bowling.score(), (5 + 5 + next_roll) + next_roll);
     }
 }
