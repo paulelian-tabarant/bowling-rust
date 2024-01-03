@@ -1,21 +1,17 @@
-pub struct Bowling();
+#[path = "../src/bowling.rs"]
+mod bowling;
 
-impl Bowling {
-    pub fn roll(&self, pins: i8) {
+mod bowling_test {
+    use crate::bowling::Bowling;
+
+    #[test]
+    fn score_is_zero_when_every_roll_is_a_gutter_ball() {
+        let bowling = Bowling();
+
+        for _ in 0..20 {
+            bowling.roll(0);
+        }
+
+        assert_eq!(bowling.score(), 0);
     }
-
-    pub fn score(&self) -> i16 {
-        return 0;
-    }
-}
-
-#[test]
-fn score_is_zero_when_every_roll_is_a_gutter_ball() {
-    let bowling = Bowling();
-
-    for _ in 0..20 {
-        bowling.roll(0);
-    }
-
-    assert_eq!(bowling.score(), 0);
 }
