@@ -42,4 +42,19 @@ mod bowling_test {
 
         assert_eq!(bowling.score(), (2 + 8 + next_roll) + next_roll);
     }
+
+    #[test]
+    fn score_does_not_consider_two_rolls_that_sum_ten_on_two_adjacent_frames_as_a_spare() {
+        let mut bowling = Bowling::new();
+
+        bowling.roll(2);
+        bowling.roll(4);
+        bowling.roll(6);
+        bowling.roll(5);
+        for _ in 0..16 {
+            bowling.roll(0);
+        }
+
+        assert_eq!(bowling.score(), 2 + 4 + 6 + 5);
+    }
 }
