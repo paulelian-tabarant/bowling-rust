@@ -18,9 +18,14 @@ impl Bowling {
 
     pub fn score(&self) -> i16 {
         let mut score: i16 = 0;
+        let mut strikes_count = 0;
 
         for frame in 0..LAST_FRAME {
-            let roll = (frame * 2) as usize;
+            let roll = ((frame * 2) - strikes_count) as usize;
+
+            if self.rolls[roll] == TOTAL_PINS as i16 {
+                strikes_count += 1;
+            }
 
             if self.is_spare(roll) {
                 score += self.rolls[roll + 2];

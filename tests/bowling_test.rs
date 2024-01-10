@@ -57,4 +57,36 @@ mod bowling_test {
 
         assert_eq!(bowling.score(), 2 + 4 + 6 + 5);
     }
+
+    #[test]
+    fn score_is_computed_correctly_even_when_frames_are_strikes() {
+        let mut bowling = Bowling::new();
+        let first = 0;
+        let second = 0;
+
+        bowling.roll(10);
+        bowling.roll(first);
+        bowling.roll(second);
+        for _ in 0..16 {
+            bowling.roll(0);
+        }
+
+        assert_eq!(bowling.score(), 10);
+    }
+
+    #[test]
+    fn score_of_the_next_two_rolls_are_added_when_a_strike_is_made() {
+        let mut bowling = Bowling::new();
+        let first = 3;
+        let second = 4;
+
+        bowling.roll(10);
+        bowling.roll(first);
+        bowling.roll(second);
+        for _ in 0..2 * 8 {
+            bowling.roll(0);
+        }
+
+        assert_eq!(bowling.score(), (10 + first + second) + (first + second));
+    }
 }
