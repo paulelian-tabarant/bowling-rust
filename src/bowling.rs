@@ -16,8 +16,8 @@ impl Bowling {
     pub fn score(&self) -> i16 {
         let mut score = 0;
 
-        for roll in self.rolls.iter()  {
-            score = score + roll;
+        for i in 0..self.rolls.len() {
+            score += self.rolls[i];
         }
 
         return score;
