@@ -21,9 +21,10 @@ impl Bowling {
         let mut strikes_count = 0;
 
         for frame in 0..LAST_FRAME {
-            let roll = ((frame * 2) - strikes_count) as usize;
+            let roll = Self::roll_at(frame, &mut strikes_count);
 
-            if self.rolls[roll] == TOTAL_PINS as i16 {
+            if self.is_strike(roll) {
+                score += self.rolls[roll + 2];
                 strikes_count += 1;
             }
 
@@ -35,6 +36,14 @@ impl Bowling {
         }
 
         return score;
+    }
+
+    fn roll_at(frame: i8, strikes: &mut i8) -> usize {
+        ((frame * 2) - strikes) as usize
+    }
+
+    fn is_strike(&self, roll: usize) -> bool {
+        self.rolls[roll] == TOTAL_PINS as i16
     }
 
     fn is_spare(&self, roll: usize) -> bool {
