@@ -1,19 +1,19 @@
 pub struct Bowling {
-    score: i16
+    rolls: Vec<i16>
 }
 
 impl Bowling {
     pub(crate) fn new() -> Bowling {
         return Bowling {
-            score: 0
+            rolls: Vec::new()
         }
     }
 
     pub fn roll(&mut self, pins_down: i16) {
-        self.score += pins_down;
+        self.rolls.push(pins_down);
     }
 
     pub fn score(&self) -> i16 {
-        return self.score;
+        return self.rolls.iter().sum();
     }
 }
