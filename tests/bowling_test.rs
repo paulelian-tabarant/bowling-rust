@@ -40,6 +40,6 @@ mod bowling_test {
             bowling.roll(0);
         }
 
-        assert_eq!(bowling.score(), (5 + 5 + next_roll) + next_roll);
+        assert_eq!(bowling.score(), (2 + 8 + next_roll) + next_roll);
     }
 }

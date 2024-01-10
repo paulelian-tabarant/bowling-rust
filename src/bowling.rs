@@ -1,8 +1,11 @@
 pub struct Bowling {
-    rolls: Vec<i16>
+    rolls: Vec<i16>,
 }
 
+const TOTAL_PINS: i16 = 10;
+
 impl Bowling {
+
     pub(crate) fn new() -> Bowling {
         return Bowling {
             rolls: Vec::new()
@@ -16,13 +19,17 @@ impl Bowling {
     pub fn score(&self) -> i16 {
         let mut score = 0;
 
-        for i in 0..self.rolls.len() {
-            if i < self.rolls.len() - 1 && self.rolls[i] + self.rolls[i + 1] == 10 {
-                score += self.rolls[i + 2];
+        for roll in 0..self.rolls.len() {
+            if self.is_spare(roll) {
+                score += self.rolls[roll + 2];
             }
-            score += self.rolls[i];
+            score += self.rolls[roll];
         }
 
         return score;
+    }
+
+    fn is_spare(&self, roll: usize) -> bool {
+        roll < self.rolls.len() - 1 && self.rolls[roll] + self.rolls[roll + 1] == TOTAL_PINS
     }
 }
