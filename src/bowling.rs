@@ -21,7 +21,7 @@ impl Bowling {
         let mut strikes_count = 0;
 
         for frame in 0..LAST_FRAME {
-            let roll = Self::roll_at(frame, &mut strikes_count);
+            let roll = Self::roll_at(frame, strikes_count);
 
             if self.is_strike(roll) {
                 score += self.rolls[roll + 2];
@@ -38,7 +38,7 @@ impl Bowling {
         return score;
     }
 
-    fn roll_at(frame: i8, strikes: &mut i8) -> usize {
+    fn roll_at(frame: i8, strikes: i8) -> usize {
         ((frame * 2) - strikes) as usize
     }
 

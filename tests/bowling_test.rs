@@ -85,4 +85,16 @@ mod bowling_test {
 
         assert_eq!(bowling.score(), (10 + next + next_next) + (next + next_next));
     }
+
+    #[test]
+    // acceptance test
+    fn score_is_300_when_every_roll_is_a_strike() {
+        let mut bowling = Bowling::new();
+
+        for _ in 0..12 {
+            bowling.roll(10);
+        }
+
+        assert_eq!(bowling.score(), 300);
+    }
 }
